@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/app-sidebar";
+import Navbar from "@/components/layout/app-navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +23,7 @@ const sfCompact = localFont({
       weight: "300",
       style: "normal",
     },
-   {
+    {
       path: "../public/fonts/SF Compact Text Regular.woff2",
       weight: "400",
       style: "normal",
@@ -64,7 +67,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${sfCompact.variable} antialiased`}
       >
-        {children}
+        <SidebarProvider>
+          <Navbar />
+          <AppSidebar />
+          <main>
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );
