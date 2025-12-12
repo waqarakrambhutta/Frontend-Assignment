@@ -25,33 +25,6 @@ This project is a chat application dashboard implemented with a modern tech stac
 - **Server-Side Fetching:** Utilizes Next.js Server Components. Data is fetched directly on the server properly typed with TypeScript interfaces.
 - **Loading State:** Implemented **React Suspense** with a Skeleton loader (`Shimmer effect`) to provide a smooth user experience while data is being fetched. An artificial delay was added to clearly demonstrate this state.
 
-#### Implementation
-
-```tsx
-async function getPosts(): Promise<Post[]> {
-  try {
-    const res = await fetch("https://dummyjson.com/posts?limit=12", {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-
-    const data: PostsResponse = await res.json();
-    return data.posts;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    return [];
-  }
-}
-
-// In Page Component
-<Suspense fallback={<PostsSkeleton />}>
-  <PostList />
-</Suspense>;
-```
-
 ## Deployment
 
 The application is live and deployed on Vercel:
