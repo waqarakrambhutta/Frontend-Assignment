@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
   ChevronDown,
+  GitFork,
   Globe,
   Instagram,
   LifeBuoy,
@@ -25,7 +26,6 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Flow } from "../svgs";
 
 const inboxItems = [
   {
@@ -49,7 +49,7 @@ const inboxItems = [
   {
     title: "API Demo",
     url: "/api-demo",
-    icon: Flow,
+    icon: GitFork,
     count: null,
   },
 ];
