@@ -70,10 +70,7 @@ export default function RootLayout({
         <SidebarProvider>
           <Navbar />
           <AppSidebar />
-          <main>
-            <SidebarTrigger />
-            {children}
-          </main>
+          {children}
         </SidebarProvider>
       </body>
     </html>

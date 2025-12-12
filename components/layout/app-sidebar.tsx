@@ -24,6 +24,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { Flow } from "../svgs";
 
 const inboxItems = [
   {
@@ -43,6 +45,12 @@ const inboxItems = [
     url: "#",
     icon: UserCircle,
     count: 5,
+  },
+  {
+    title: "API Demo",
+    url: "/api-demo",
+    icon: Flow,
+    count: null,
   },
 ];
 
@@ -103,10 +111,10 @@ function CollapsibleSection({
     <SidebarGroup>
       <SidebarGroupLabel
         asChild
-        className="group/label w-full justify-between hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer pr-0"
+        className="px-0 group/label w-full justify-between hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer pr-0 text-[9.82px] font-medium"
       >
         <button onClick={() => setIsOpen(!isOpen)}>
-          <span className="text-base font-medium text-foreground">{title}</span>
+          <span className="text-[9.82px] font-medium ">{title}</span>
           <ChevronDown
             className={`ml-auto transition-transform ${
               isOpen ? "rotate-0" : "-rotate-90"
@@ -124,19 +132,21 @@ function CollapsibleSection({
                   isActive={item.isActive}
                   className={cn(
                     item.isActive &&
-                      "data-[active=true]:bg-white data-[active=true]:shadow-sm data-[active=true]:text-black data-[active=true]:font-medium border border-transparent data-[active=true]:border-gray-100"
+                      "data-[active=true]:bg-white data-[active=true]:shadow-sm data-[active=true]:text-black data-[active=true]:font-medium border border-transparent data-[active=true]:border-gray-100 text-[10.73px] font-[457] px-0"
                   )}
                 >
-                  <a href={item.url}>
+                  <Link href={item.url}>
                     {type === "users" ? (
-                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-200 text-gray-500">
+                      <div className="flex h-6 w-6 shrink-0 items-center justify-center text-[10.73px] font-[457] rounded-full bg-gray-200 text-gray-500">
                         <User className="h-4 w-4" />
                       </div>
                     ) : (
                       item.icon && <item.icon className={item.color || ""} />
                     )}
-                    <span>{item.title}</span>
-                  </a>
+                    <span className="font-[457] text-[10.73px]">
+                      {item.title}
+                    </span>
+                  </Link>
                 </SidebarMenuButton>
                 {item.count && (
                   <SidebarMenuBadge>{item.count}</SidebarMenuBadge>
@@ -152,21 +162,25 @@ function CollapsibleSection({
 
 export function AppSidebar() {
   return (
-    <Sidebar className="border-r mt-[58px] ml-[7.72px] bg-blue-500 rounded-[11.23px]">
-      <SidebarContent className="px-2 py-4 bg-blue-500 rounded-[11.23px]">
-        <div className="px-2 py-2">
-          <h2 className="mb-4 text-xl font-bold tracking-tight px-2">Inbox</h2>
+    <Sidebar className="border-r mt-[58px] ml-[7.72px] pb-[58px]">
+      <SidebarContent className="px-[11.23px] py-[9.82px] bg-white rounded-l-[11.23px]">
+        <div className=" py-2">
+          <h2 className="mb-4 text-[12.63px] font-[790]">Inbox</h2>
           <SidebarMenu>
             {inboxItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
                   <a href={item.url}>
                     <item.icon />
-                    <span>{item.title}</span>
+                    <span className="font-[457] text-[10.73px]">
+                      {item.title}
+                    </span>
                   </a>
                 </SidebarMenuButton>
                 {item.count && (
-                  <SidebarMenuBadge>{item.count}</SidebarMenuBadge>
+                  <SidebarMenuBadge className="text-[10.73px] font-[457]">
+                    {item.count}
+                  </SidebarMenuBadge>
                 )}
               </SidebarMenuItem>
             ))}
